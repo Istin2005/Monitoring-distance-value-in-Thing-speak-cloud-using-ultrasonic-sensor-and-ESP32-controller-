@@ -1,3 +1,5 @@
+# Name : ISTIN
+# Reg NO:212223040068
 # Monitoring-distance-value-in-Thing-speak-cloud-using-ultrasonic-sensor-and-ESP32-controller
 
 # Uploading ultrasonic sensor data in Thing Speak cloud
@@ -95,13 +97,64 @@ Prototype and build IoT systems without setting up servers or developing web sof
 ![image](https://github.com/user-attachments/assets/c7746b27-dca6-4b9f-9e71-b24f3e57b6c8)
 
  
+ 
 # PROGRAM:
-
+```
+#include "ThingSpeak.h"
+#include <WiFi.h>
+char ssid[] = "realme"; //SSID
+char pass[] = "12345678"; // Password
+const int trigger = 2;
+const int echo = 26;
+long T;
+float distanceCM;
+WiFiClient client;
+unsigned long myChannelField = 3169470; // Channel ID
+const int ChannelField = 1; // Which channel to write data
+const char * myWriteAPIKey = "PYITS3DCW9T4D13F"; // Your write API Key
+void setup()
+{
+Serial.begin(115200);
+pinMode(trigger, OUTPUT);
+pinMode(echo, INPUT);
+WiFi.mode(WIFI_STA);
+ThingSpeak.begin(client);
+}
+void loop()
+{
+if (WiFi.status() != WL_CONNECTED)
+{
+Serial.print("Attempting to connect to SSID: ");
+Serial.println(ssid);
+while (WiFi.status() != WL_CONNECTED)
+{
+WiFi.begin(ssid, pass);
+Serial.print(".");
+delay(5000);
+}
+Serial.println("\nConnected.");
+}
+digitalWrite(trigger, LOW);
+delay(1);
+digitalWrite(trigger, HIGH);
+delayMicroseconds(10);
+digitalWrite(trigger, LOW);
+T = pulseIn(echo, HIGH);
+distanceCM = T * 0.034; //340 m/s or 0.034 cm/microsec
+distanceCM = distanceCM / 2;
+Serial.print("Distance in cm: ");
+Serial.println(distanceCM);
+ThingSpeak.writeField(myChannelField, ChannelField, distanceCM, myWriteAPIKey);
+delay(1000);
+}
+```
 # CIRCUIT DIAGRAM:
+![WhatsApp Image 2025-11-18 at 14 40 38_6a0d2a23](https://github.com/user-attachments/assets/2099e20d-d09b-41fb-9449-514a1ab1f5f7)
 
 # OUTPUT:
+<img width="1919" height="1143" alt="Screenshot 2025-11-18 115430" src="https://github.com/user-attachments/assets/078f385d-3973-4120-bd6b-0f93619e1385" />
 
-
+<img width="1901" height="1031" alt="Screenshot 2025-11-18 115410" src="https://github.com/user-attachments/assets/63f39de2-6ccb-4d9b-9153-46e30fab1471" />
 
 
 # RESULT:
