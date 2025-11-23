@@ -152,7 +152,8 @@ delay(1000);
 ![WhatsApp Image 2025-11-18 at 14 40 38_6a0d2a23](https://github.com/user-attachments/assets/2099e20d-d09b-41fb-9449-514a1ab1f5f7)
 
 # OUTPUT:
-<img width="1919" height="1143" alt="Screenshot 2025-11-18 115430" src="https://github.com/user-attachments/assets/078f385d-3973-4120-bd6b-0f93619e1385" />
+<img width="1645" height="336" alt="image" src="https://github.com/user-attachments/assets/2fb51002-8f4f-41f6-bff9-f460f4d5cdb7" />
+
 
 <img width="1901" height="1031" alt="Screenshot 2025-11-18 115410" src="https://github.com/user-attachments/assets/63f39de2-6ccb-4d9b-9153-46e30fab1471" />
 
